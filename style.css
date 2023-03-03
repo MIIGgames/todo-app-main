@@ -200,6 +200,18 @@ body.dark {
       width: 100%;
       margin-bottom: 10px;
     }
+
+    .footer button {
+        width: 100%;
+        padding: 10px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+      
   }
   
   /* Estilos para tablets */
