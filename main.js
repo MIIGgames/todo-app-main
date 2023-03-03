@@ -6,14 +6,27 @@ const taskInput = document.querySelector('.footer input[type="text"]');
 let isDragging = false;
 let dragStartIndex, dragEndIndex;
 
+// Load tasks from local storage on page load
+window.addEventListener('load', () => {
+  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  tasks.forEach((taskText) => {
+    const newTask = createTaskElement(taskText);
+    taskList.appendChild(newTask);
+  });
+});
+
 // Adicionar nova tarefa
 addTaskButton.addEventListener('click', () => {
   const newTaskText = taskInput.value.trim();
-  
+
   if (newTaskText) {
     const newTask = createTaskElement(newTaskText);
     taskList.appendChild(newTask);
     taskInput.value = '';
+
+    // Save tasks to local storage
+    const tasks = [...taskList.children].map(task => task.querySelector('span').textContent);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 });
 
@@ -35,6 +48,10 @@ taskList.addEventListener('click', (event) => {
   if (event.target.classList.contains('delete-task')) {
     event.target.parentElement.remove();
     updateTasksIndexes();
+
+    // Save tasks to local storage
+    const tasks = [...taskList.children].map(task => task.querySelector('span').textContent);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 });
 
@@ -55,6 +72,10 @@ function handleDragDrop(event) {
 
 function handleDragEnd() {
   isDragging = false;
+
+  // Save tasks to local storage
+  const tasks = [...taskList.children].map(task => task.querySelector('span').textContent);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function swapTasks() {
@@ -81,5 +102,6 @@ taskList.addEventListener('dragend', handleDragEnd);
 // Alternar tema
 toggleThemeButton.addEventListener('click', () => {
   document.body.classList.toggle('dark');
+  document.querySelector
   document.querySelector('#task-app').classList.toggle('dark');
 });
