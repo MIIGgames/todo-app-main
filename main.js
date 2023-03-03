@@ -7,41 +7,6 @@ let isDragging = false;
 let dragStartIndex, dragEndIndex;
 
 // Adicionar nova tarefa
-// Adicionar nova tarefa
-addTaskButton.addEventListener('click', () => {
-  const taskInput = document.querySelector('.footer input[type="text"]');
-  const newTaskText = taskInput.value;
-  const taskImageInput = document.querySelector('#task-image');
-  const newTaskImage = taskImageInput.files[0];
-
-  if (newTaskText) {
-    const newTask = document.createElement('li');
-    newTask.draggable = true;
-    
-    const taskTextSpan = document.createElement('span');
-    taskTextSpan.textContent = newTaskText;
-    
-    newTask.appendChild(taskTextSpan);
-    
-    if (newTaskImage) {
-      const taskImage = document.createElement('img');
-      taskImage.src = URL.createObjectURL(newTaskImage);
-      newTask.appendChild(taskImage);
-    }
-
-    const deleteTaskButton = document.createElement('button');
-    deleteTaskButton.classList.add('delete-task');
-    deleteTaskButton.textContent = 'Excluir';
-    newTask.appendChild(deleteTaskButton);
-
-    taskList.appendChild(newTask);
-
-    taskInput.value = '';
-    taskImageInput.value = '';
-  }
-});
-
-/*
 addTaskButton.addEventListener('click', () => {
   const newTaskText = taskInput.value.trim();
   
@@ -51,7 +16,6 @@ addTaskButton.addEventListener('click', () => {
     taskInput.value = '';
   }
 });
-*/
 
 // Criar elemento de tarefa
 function createTaskElement(text) {
